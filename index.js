@@ -30,10 +30,10 @@ client.on("guildMemberAdd", (member) => {
     switch (member.guild.id) {
       //Add cases here to not auto-ban.
       default:
-      
-      member.ban("Auto-ban by YerBot: detected invite link in username.")
-      .then(() => m.logNoMsg(config, client, `**User auto-banned** "${member.user.username}#${member.user.discriminator}" with ID \`${member.id}\` [ <@${member.id}> ] in ${member.guild.name} with guild ID \`${member.guild.id}\``))
-      .catch(() => m.logNoMsg(config, client, `**ERROR COULD NOT BAN** "${member.user.username}#${member.user.discriminator}" with ID \`${member.id}\` [ <@${member.id}> ] in ${member.guild.name} with guild ID \`${member.guild.id}\``));
+
+        member.ban("Auto-ban by Yer Assistant: detected invite link in username.")
+        .then(() => m.logNoMsg(config, client, `**User auto-banned** "${member.user.username}#${member.user.discriminator}" with ID \`${member.id}\` [ <@${member.id}> ] in ${member.guild.name} with guild ID \`${member.guild.id}\``))
+        .catch(() => m.logNoMsg(config, client, `**ERROR COULD NOT BAN** "${member.user.username}#${member.user.discriminator}" with ID \`${member.id}\` [ <@${member.id}> ] in ${member.guild.name} with guild ID \`${member.guild.id}\``));
       break;
     }
   }
@@ -50,42 +50,43 @@ client.on("message", message => {
   if (message.channel.type != "text") return;
   if (message.content.indexOf(config.prefix) !== 0) return;
 
-  // This is the best way to define args. Trust me.
-  const argsArr = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const command = argsArr.shift().toLowerCase().replace(/[^a-zA-Z ]/g, "");
-  const argsTxt = message.content.slice(config.prefix.length + command.length).trim();
-  const extraData = "";
+  if (message.channel.id == "481948031042977805") { //Check if in assistant channel.
+    // This is the best way to define args. Trust me.
+    const argsArr = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const command = argsArr.shift().toLowerCase().replace(/[^a-zA-Z ]/g, "");
+    const argsTxt = message.content.slice(config.prefix.length + command.length).trim();
+    const extraData = "";
 
-  // The list of if/else is replaced with those simple 2 lines:
-  try {
-
-    let commandFile = require(`./commands/${command}.js`);
-    commandFile.run(config, client, message, argsArr, argsTxt, extraData);
-  } catch (err) {
-
-    var err1 = "```" + err.stack + "```";
-    var rawErr1 = err;
+    // The list of if/else is replaced with those simple 2 lines:
     try {
 
-      let commandFile = require(`./commands/alias/${command}.js`);
+      let commandFile = require(`./commands/${command}.js`);
       commandFile.run(config, client, message, argsArr, argsTxt, extraData);
     } catch (err) {
-      var err2 = "```" + err + "```";
-      var rawErr2 = err;
 
-      if (rawErr2.code == 'MODULE_NOT_FOUND' && rawErr1.code == 'MODULE_NOT_FOUND') {
+      var err1 = "```" + err.stack + "```";
+      var rawErr1 = err;
+      try {
 
-      } else {
-        var msg = `***Some error occured!***\r\n<@${config.ownerID}> Check the logs for the detailed error message and fix it!!`;
-        message.channel.send(msg);
-        msg += "\r\n\r\nERR1:\r\n" + err1;
-        msg += "\r\n\r\nERR2:\r\n" + err2;
-        m.log(config, client, message, msg, "e");
-      };
+        let commandFile = require(`./commands/alias/${command}.js`);
+        commandFile.run(config, client, message, argsArr, argsTxt, extraData);
+      } catch (err) {
+        var err2 = "```" + err + "```";
+        var rawErr2 = err;
+
+        if (rawErr2.code == 'MODULE_NOT_FOUND' && rawErr1.code == 'MODULE_NOT_FOUND') {
+
+        } else {
+          var msg = `***Some error occured!***\r\n<@${config.ownerID}> Check the logs for the detailed error message and fix it!!`;
+          message.channel.send(msg);
+          msg += "\r\n\r\nERR1:\r\n" + err1;
+          msg += "\r\n\r\nERR2:\r\n" + err2;
+          m.log(config, client, message, msg, "e");
+        };
 
 
+      }
     }
-
 
     //console.error(err1);
   }

@@ -2,3 +2,5 @@ config.json
 temp/*
 db/*
 YerBot.code-workspace
+yerFiles/temp/*
+yerFiles/db/*
