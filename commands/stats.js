@@ -35,7 +35,7 @@ exports.run = (config, client, message, argsArr, argsTxt, extraData) => {
 
 
 
-    var msg = "YerBot has been online for:\r\n" + ftime + "\r\n\r\nServing:\r\n" + svnum + " servers,\r\n" + chnum + " channels, and\r\n" + usnum + " users!";
+    var msg = "I have been online for:\r\n" + ftime + "\r\n\r\nServing:\r\n" + svnum + " servers,\r\n" + chnum + " channels, and\r\n" + usnum + " users!";
    
 
 

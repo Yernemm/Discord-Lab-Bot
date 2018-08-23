@@ -75,6 +75,20 @@ client.on("message", message => {
         var rawErr2 = err;
 
         if (rawErr2.code == 'MODULE_NOT_FOUND' && rawErr1.code == 'MODULE_NOT_FOUND') {
+          //Command not found
+          //Give random fact instead.
+
+          const fs = require('fs');
+	
+    var lines = fs.readFileSync('./yerFiles/facts.txt', 'utf8').split(m.nl());
+    var msg = "Command not found, here's an animal fact instead: \n\n"
+    msg += lines[Math.floor(Math.random() * lines.length)];
+   
+
+    m.logSend(config, client, message, msg);
+
+          //
+
 
         } else {
           var msg = `***Some error occured!***\r\n<@${config.ownerID}> Check the logs for the detailed error message and fix it!!`;
