@@ -3,7 +3,7 @@ exports.run = (client) => {
   const m = require("./../shared/methods.js");
   const config = require("./../config.json");
   const sqlite = require("sqlite");
-  bot.user.setPresence({ status: 'online', game: { name: `${config.prefix}help | yernemm.xyz` } });
+  bot.user.setPresence({ status: 'online', game: { name: `Here to help!` } });
   var d = new Date();
   timeStart = d.getTime();
   var msg = "<:yHappy:398973907576553472>\r\n__**Heey! I am now online!**__";

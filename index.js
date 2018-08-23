@@ -49,6 +49,7 @@ client.on("message", message => {
   if (message.author.bot) return;
   if (message.channel.type != "text") return;
   if (message.content.indexOf(config.prefix) !== 0) return;
+  if (message.content.startsWith(".")) return;
 
   if (message.channel.id == "481948031042977805") { //Check if in assistant channel.
     // This is the best way to define args. Trust me.
