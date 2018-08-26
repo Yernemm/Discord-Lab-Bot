@@ -9,6 +9,19 @@ exports.run = (client) => {
   var msg = "<:yHappy:398973907576553472>\r\n__**Heey! I am now online!**__";
   //msg += `\r\nServers: ${client.guilds.size} Channels: ${client.channels.size} Users: ${client.users.size}`
  
+  var labGuild = bot.guilds.get("384446991343681538");
+  var rainbowCounter = 0;
+  var rainbowColours = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3"];
+  setInterval(rainbowChange,1000)
+
+  function rainbowChange(){
+    var rainbowRole = labGuild.roles.find("name", "Rainbow");
+    if(rainbowRole){
+      rainbowRole.setColor(rainbowColours[rainbowCounter % rainbowColours.length]);
+    }
+    rainbowCounter++;
+  }
+
 
   bot.syncGuilds();
 
