@@ -33,6 +33,8 @@ exports.run = (config, client, message, argsArr, argsTxt, extraData) => {
                     msgNew += c;
                 }else{
                     pos = (pos + shift) % alpha.length;
+                    if(pos<0)
+                    	pos = alpha.length + pos;
                     var newChar = alpha[pos];
                     if(upper)
                     newChar = newChar.toLocaleUpperCase();
