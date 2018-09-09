@@ -23,7 +23,7 @@ exports.run = (config, client, message, argsArr, argsTxt, extraData) => {
         case "caesar":
         if (Number.isInteger(argsArr[1] * 1))
         {
-            var shift = argsArr[1];
+            var shift = argsArr[1]*1;
             var msgBefore = argsTxt.substring(argsArr[0].length + argsArr[1].length + 2);
             var msgNew = "";
             msgBefore.split('').forEach(c =>{
