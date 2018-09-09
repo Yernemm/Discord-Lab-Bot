@@ -26,7 +26,7 @@ exports.run = (config, client, message, argsArr, argsTxt, extraData) => {
             var shift = argsArr[1];
             var msgBefore = argsTxt.substring(argsArr[0] + argsArr[1] + 2);
             var msgNew = "";
-            msgBefore.forEach(c =>{
+            msgBefore.split('').forEach(c =>{
                 var upper = (c == c.toUpperCase());
                 var pos = alpha.indexOf(c.toLowerCase());
                 if (pos == -1){
