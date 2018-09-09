@@ -24,7 +24,7 @@ exports.run = (config, client, message, argsArr, argsTxt, extraData) => {
         if (Number.isInteger(argsArr[1] * 1))
         {
             var shift = argsArr[1];
-            var msgBefore = argsTxt.substring(argsArr[0] + argsArr[1] + 2);
+            var msgBefore = argsTxt.substring(argsArr[0].length + argsArr[1].length + 2);
             var msgNew = "";
             msgBefore.split('').forEach(c =>{
                 var upper = (c == c.toUpperCase());
