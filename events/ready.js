@@ -123,8 +123,8 @@ exports.run = (client) => {
 if(date.getMonth() == 11 && date.getDate() <= 25){
   m.logNoMsg(config, client, "Running xmas icon check.");
   if (!fs.existsSync(propPath)) {
-    // Do something?
-    fs.writeFileSync(propPath, "-1");
+    // Do something
+    fs.writeFile(propPath, "-1");
 }
       fs.readFile(
         propPath,
