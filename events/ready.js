@@ -118,13 +118,13 @@ exports.run = (client) => {
       
       const fs = require('fs');
       const propPath = "./yerFiles/xmas/checker.txt"
-      var date = new Date(Date.UTC(year, month, day, hour, minute, second));
+      var date = new Date();;
       
-if(date.getMonth() == 11 && date.getDate() <= 25){
+if(date.getMonth() == 11 && date.getUTCDate() <= 25){
   m.logNoMsg(config, client, "Running xmas icon check.");
   if (!fs.existsSync(propPath)) {
     // Do something
-    fs.writeFile(propPath, "-1");
+    fs.writeFileSync(propPath, "-1");
 }
       fs.readFile(
         propPath,
@@ -133,16 +133,16 @@ if(date.getMonth() == 11 && date.getDate() <= 25){
             //handle error
             m.logNoMsg(config, client, "Xmas: error opening file.\n\n"+"```" + err + "```", "e");
           }else{
-            if(buf.toString() != date.getDate())
+            if(buf.toString() != date.getUTCDate())
             {
               //Different date, change icon.
 
-              var iconNumber = 25 - date.getDate();
+              var iconNumber = 25 - date.getUTCDate();
               var icon = "./yerFiles/xmas/" + iconNumber + ".png";
               m.logNoMsg(config, client, "Changing xmas icon to number " + iconNumber +"\nCurrent date is "+date );
 
               labGuild.setIcon(icon).then(
-                fs.writeFile(propPath, date.getDate(), function(err, data){
+                fs.writeFile(propPath, date.getUTCDate(), function(err, data){
                   if (err) m.logNoMsg(config, client, "Xmas: error writing file."+"\n\n```" + err + "```", "e")
                   
               })
