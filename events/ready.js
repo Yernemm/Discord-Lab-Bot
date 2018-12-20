@@ -118,7 +118,7 @@ exports.run = (client) => {
       
       const fs = require('fs');
       const propPath = "./yerFiles/xmas/checker.txt"
-      var date = new Date();
+      var date = new Date(Date.UTC(year, month, day, hour, minute, second));
       
 if(date.getMonth() == 11 && date.getDate() <= 25){
   m.logNoMsg(config, client, "Running xmas icon check.");
