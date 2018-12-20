@@ -111,6 +111,7 @@ exports.run = (client) => {
 
     //Xmas icon
 
+    checkForChristmas();
     setInterval(checkForChristmas, 1800000);
 
     function checkForChristmas(){
