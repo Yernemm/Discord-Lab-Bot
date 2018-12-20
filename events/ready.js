@@ -127,7 +127,7 @@ if(date.getMonth() == 11 && date.getDate() <= 25){
         (err, buf) =>{
           if(err){
             //handle error
-            m.logNoMsg(config, client, "Xmas: error opening file.", "e");
+            m.logNoMsg(config, client, "Xmas: error opening file.\n\n"+"```" + err + "```", "e");
           }else{
             if(buf.toString() != date.getDate())
             {
@@ -139,10 +139,10 @@ if(date.getMonth() == 11 && date.getDate() <= 25){
 
               labGuild.setIcon(icon).then(
                 fs.writeFile(propPath, date.getDate(), function(err, data){
-                  if (err) m.logNoMsg(config, client, "Xmas: error writing file.", "e")
+                  if (err) m.logNoMsg(config, client, "Xmas: error writing file."+"\n\n```" + err + "```", "e")
                   
               })
-              ).catch(m.logNoMsg(config, client, "Xmas: error setting icon.", "e"));
+              ).catch(err => m.logNoMsg(config, client, "Xmas: error setting icon."+"\n\n```" + err + "```", "e"));
             }
           }
         }
