@@ -109,6 +109,44 @@ exports.run = (client) => {
 
 
 
+    //Xmas icon
 
+    setInterval(checkForChristmas, 1800000);
 
+    function checkForChristmas(){
+      
+      const fs = require('fs');
+      const propPath = "./yerFiles/xmas/checker.txt"
+      var date = new Date();
+      
+if(date.getMonth() == 11 && date.getDate() <= 25){
+  m.logNoMsg(config, client, "Running xmas icon check.");
+      fs.readFile(
+        propPath,
+        (err, buf) =>{
+          if(err){
+            //handle error
+            m.logNoMsg(config, client, "Xmas: error opening file.", "e");
+          }else{
+            if(buf.toString() != date.getDate())
+            {
+              //Different date, change icon.
+
+              var iconNumber = 25 - date.getDate();
+              var icon = "./yerFiles/xmas/" + iconNumber + ".png";
+              m.logNoMsg(config, client, "Changing xmas icon to number " + iconNumber);
+
+              labGuild.setIcon(icon).then(
+                fs.writeFile(propPath, date.getDate(), function(err, data){
+                  if (err) m.logNoMsg(config, client, "Xmas: error writing file.", "e")
+                  
+              })
+              ).catch(m.logNoMsg(config, client, "Xmas: error setting icon.", "e"));
+            }
+          }
+        }
+      );
+
+    }
+  }
 }
