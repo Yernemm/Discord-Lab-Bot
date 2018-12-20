@@ -139,7 +139,7 @@ if(date.getMonth() == 11 && date.getDate() <= 25){
 
               var iconNumber = 25 - date.getDate();
               var icon = "./yerFiles/xmas/" + iconNumber + ".png";
-              m.logNoMsg(config, client, "Changing xmas icon to number " + iconNumber);
+              m.logNoMsg(config, client, "Changing xmas icon to number " + iconNumber +"\nCurrent date is "+date );
 
               labGuild.setIcon(icon).then(
                 fs.writeFile(propPath, date.getDate(), function(err, data){
