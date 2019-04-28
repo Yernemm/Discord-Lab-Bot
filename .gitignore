@@ -4,5 +4,5 @@ db/*
 YerBot.code-workspace
 yerFiles/temp/*
 yerFiles/db/*
-node_modules/puppeteer/*
+node_modules/
 

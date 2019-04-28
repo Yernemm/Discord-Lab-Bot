@@ -105,7 +105,7 @@ client.on("message", message => {
 function cleverbotSend(message, callback){
     (async () => {
       lgp("Opening browser...");
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
       lgp("Opening new tab...");
       const page = await browser.newPage();
       lgp("Setting viewport...");
