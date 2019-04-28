@@ -4,5 +4,4 @@ db/*
 YerBot.code-workspace
 yerFiles/temp/*
 yerFiles/db/*
-node_modules/
 
