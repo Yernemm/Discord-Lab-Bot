@@ -12,7 +12,7 @@ exports.run = (client) => {
   var labGuild = bot.guilds.get("384446991343681538");
   var rainbowCounter = 0;
   var rainbowColours = ["#FF0000", "#FF7F00", "#FFFF00", "#00FF00", "#0000FF", "#4B0082", "#9400D3"];
-  setInterval(rainbowChange,1000)
+  //setInterval(rainbowChange,1000)
 
   function rainbowChange(){
     var rainbowRole = labGuild.roles.find("name", "Rainbow");
@@ -154,4 +154,18 @@ if(date.getUTCMonth() == 11 && date.getUTCDate() <= 25){
 
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 }
