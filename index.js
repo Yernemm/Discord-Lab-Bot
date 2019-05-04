@@ -131,7 +131,7 @@ function cleverbotSend(message, callback){
     lgp("start");
     (async () =>{
       lgp("Opening browser...");
-      browser = await puppeteer.launch({headless: false, args: ['--no-sandbox', '--disable-setuid-sandbox']});
+      browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
       lgp("Opening new tab...");
       page = await browser.newPage();
       lgp("Loading CleverBot website...");
