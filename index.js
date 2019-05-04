@@ -111,7 +111,7 @@ function cleverbotSend(message, callback){
       lgp("Setting viewport...");
       await page.setViewport({width: 1920, height: 1080});
       lgp("Loading CleverBot website...");
-      await page.goto('https://www.cleverbot.com/', {waitUntil: 'networkidle2'});
+      await page.goto('https://www.cleverbot.com/', {waitUntil: 'networkidle2', timeout: 0});
       //await page.setRequestInterception(true);
       lgp("Sending message...");
       var messageToSend = message
