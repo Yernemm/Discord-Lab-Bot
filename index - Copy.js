@@ -4,8 +4,6 @@ const readline = require('readline');
 const fs = require("fs");
 const puppeteer = require('puppeteer');
 var running = true;
-var browser;
-var page;
 
 
 const config = require("./config.json");
@@ -72,7 +70,7 @@ client.on("message", message => {
           //Command not found
           //Give random fact instead.
             message.channel.startTyping();
-          cleverbotSend(message.content, res =>{
+          cleverbotSend(argsArr, res =>{
             console.log(">Response: " + res);
             message.channel.send(res);
             message.channel.stopTyping();
@@ -106,7 +104,14 @@ client.on("message", message => {
 
 function cleverbotSend(message, callback){
     (async () => {
-     message = message.replace(/([<>])/g, "");
+      lgp("Opening browser...");
+      const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+      lgp("Opening new tab...");
+      const page = await browser.newPage();
+      lgp("Setting viewport...");
+      await page.setViewport({width: 1920, height: 1080});
+      lgp("Loading CleverBot website...");
+      await page.goto('https://www.cleverbot.com/', {waitUntil: 'networkidle2', timeout: 0});
       //await page.setRequestInterception(true);
       lgp("Sending message...");
       var messageToSend = message
@@ -117,27 +122,7 @@ function cleverbotSend(message, callback){
     }, message);
   
   
-
-  
-
-  
-     
-  
-      
-      })();
-  }
-
-  function startCleverbot(){
-    lgp("start");
-    (async () =>{
-      lgp("Opening browser...");
-      browser = await puppeteer.launch({headless: false, args: ['--no-sandbox', '--disable-setuid-sandbox']});
-      lgp("Opening new tab...");
-      page = await browser.newPage();
-      lgp("Loading CleverBot website...");
-      await page.goto('https://www.cleverbot.com/', {waitUntil: 'networkidle2', timeout: 0});
-
-      lgp("Intercepting responses...");
+      lgp("Intercepting response...");
       page.on('response', response => {
         //console.log(interceptedRequest.url());
         var alreadyFound = false;
@@ -157,44 +142,27 @@ function cleverbotSend(message, callback){
   
             if(r != "OK\n"){
               alreadyFound = true;
-              cleverRespond(r.split("\r")[0], client.channels.get(botChannelID));
-
+              callback(r.split("\r")[0]);
+              lgp("Closing browser...");
+      browser.close().then(()=>{lgp("Done!");});
               }
           }).catch();
           
           //console.log("==================================");
         }
   
-      
       });
-    })();
+  
 
-    setInterval(() => {
-      lgp("Reloading...");
-      page.reload();
-    }, 1000 * 60 * 60)
-  }
-
-  function endCleverbot(){
-    (async () =>{
-      lgp("Closing browser...");
-      browser.close().then(()=>{lgp("Done!");});
-    })();
+  
+     
+  
+      
+      })();
   }
 
   function lgp(msg){
     console.log("================" + msg);
   }
 
-  function cleverRespond(res, channel){
-    
-      console.log(">Response: " + res);
-      channel.send(res);
-      channel.stopTyping(true);
-      
-      
-    
-  }
-
-client.on("ready", () =>{startCleverbot();})
 client.login(config.token);
