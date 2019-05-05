@@ -179,6 +179,14 @@ function startCleverbot(callback = ( ()=>{} )){
   
       
       });
+
+      //Close them pesky dialog boxes.
+      page.on('dialog', async dialog => {
+        console.log(dialog.message());
+        await dialog.dismiss();
+        
+      });
+
     })();
     lgp("Setting interval...")
     setInterval(() => {
