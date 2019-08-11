@@ -349,7 +349,6 @@ function cleverbotSend(CLmessage, callback){
       console.log(respMsg);
       callback(respMsg);
       //console.log(msgHistory)
-      msgLoog()
     })
     .catch(function (error) {
       // handle error
