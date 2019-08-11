@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const readline = require('readline');
 const fs = require("fs");
-const puppeteer = require('puppeteer');
 const axios = require("axios");
 const msgHistoryLength = 30;
 console.log("lessgo")
