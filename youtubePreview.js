@@ -4,7 +4,7 @@ exports.check = (message) =>{
     let rg = /(((?<=youtu.be\/)[A-Za-z0-9]*)|((?<=youtube.com\/watch\?v=)[A-Za-z0-9]*))/g
 
     let ids = message.content.match(rg)
-
+    console.log(ids);
     if(ids){
         ids.forEAch(id => {          
         fetchVideoInfo(id).then(function (videoInfo) {
