@@ -18,7 +18,8 @@ exports.check = (message) =>{
     .setTimestamp()
     
             message.channel.send(ytEmbed)
-        });
+        })
+        .catch(()=>{console.log("oof")});
         })
     }
 
