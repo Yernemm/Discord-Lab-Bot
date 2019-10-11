@@ -1,4 +1,8 @@
 //run the check function of this module in the discord message event.
+
+//Note: this module is experimental. It was put together in under an hour and it did not have much testing done. It will contain bugs.
+//I do not recommend running this on a bot in a large or public server, unless you want to run into issues.
+
 const Discord = require("discord.js");
 const fetchVideoInfo = require('youtube-info');
 exports.check = (message) =>{
