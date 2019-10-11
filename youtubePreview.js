@@ -6,7 +6,7 @@ exports.check = (message) =>{
     let ids = message.content.match(rg)
     console.log(ids);
     if(ids){
-        ids.forEAch(id => {          
+        ids.forEach(id => {          
         fetchVideoInfo(id).then(function (videoInfo) {
             console.log(videoInfo);
             let ytEmbed = new Discord.RichEmbed()
