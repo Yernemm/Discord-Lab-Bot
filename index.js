@@ -254,7 +254,8 @@ client.on("message", message => {
   if (message.channel.type != "text") return;
   if (message.content.indexOf(config.prefix) !== 0) return;
   if (message.content.startsWith(".")) return;
-  ytPreview.check(message);
+  //Uncomment below if youtube embeds break again.
+  //ytPreview.check(message);
   if (message.channel.id == "481948031042977805") { //Check if in assistant channel.
 
     //Restart AI command 
