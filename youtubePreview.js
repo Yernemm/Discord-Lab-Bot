@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const fetchVideoInfo = require('youtube-info');
 exports.check = (message) =>{
-    let rg = /(((?<=youtu.be\/)[A-Za-z0-9]*)|((?<=youtube.com\/watch\?v=)[A-Za-z0-9]*))/g
+    let rg = /(((?<=youtu.be\/).*)|((?<=youtube.com\/watch\?v=).*))/g
 
     let ids = message.content.match(rg)
     console.log(ids);
