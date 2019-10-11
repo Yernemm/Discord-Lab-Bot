@@ -1,3 +1,4 @@
+//run the check function of this module in the discord message event.
 const Discord = require("discord.js");
 const fetchVideoInfo = require('youtube-info');
 exports.check = (message) =>{
